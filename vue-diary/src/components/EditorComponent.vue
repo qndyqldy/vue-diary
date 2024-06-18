@@ -1,5 +1,5 @@
 <script setup>
-    import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
     import {getStringedDate} from '../util/date.js';
     import {useRouter} from 'vue-router';
     import ButtonComponent from './ButtonComponent.vue';
@@ -30,9 +30,22 @@
         input.value[name] = value;
     }
 
+    const onClickEmotion = (emotionId) => {
+        input.value.emotionId = emotionId;
+    }
+
     const onClickSubmit = () => {
         emits('onSubmit', {...input.value});
     }
+
+    onMounted(() => {
+        if(props.initData) {
+            input.value = {
+                ...props.initData,
+                createdDate: new Date(Number(props.initData.createdDate))
+            };
+        }
+    })
 </script>
 
 <template>
@@ -51,7 +64,8 @@
                     v-for="emotion in emotionList"
                     :key="emotion.emotionId"
                     {...emotion}
-                    :is-selected="emotion.emotionId === input.emotionId" />
+                    :is-selected="emotion.emotionId === input.emotionId"
+                    @click="onClickEmotion(emotion.emotionId)"/>
             </div>
         </section>
         <section class="content_section">
