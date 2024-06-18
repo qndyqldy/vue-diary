@@ -15,12 +15,24 @@ export const routes = [
 		component: HomeView
 	},
 	{
-		path: '/diary',
-		component: DiaryView
+		path: '/diary/:id',
+		component: DiaryView,
+		props: (route) => {
+			return {
+				...route.params,
+				...{id: Number(route.params.id)}
+			}
+		}
 	},
 	{
-		path: '/edit',
-		component: EditView
+		path: '/edit/:id',
+		component: EditView,
+		props: (route) => {
+			return {
+				...route.params,
+				...{id: Number(route.params.id)}
+			}
+		}
 	},
 	{
 		path: '/new',
