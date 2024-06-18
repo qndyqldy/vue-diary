@@ -63,7 +63,8 @@ import {onMounted, ref} from 'vue';
                 <emotion-item
                     v-for="emotion in emotionList"
                     :key="emotion.emotionId"
-                    {...emotion}
+                    :emotion-id="emotion.emotionId"
+                    :emotion-name="emotion.emotionName"
                     :is-selected="emotion.emotionId === input.emotionId"
                     @click="onClickEmotion(emotion.emotionId)"/>
             </div>
@@ -79,7 +80,7 @@ import {onMounted, ref} from 'vue';
         <section class="button_section">
             <ButtonComponent
                 text="취소하기"
-                @on-click="router.push(-1)" />
+                @on-click="router.back()" />
             <ButtonComponent
                 text="작성완료"
                 type="POSITIVE"

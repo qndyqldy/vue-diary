@@ -2,22 +2,28 @@
     import {useRouter} from 'vue-router';
     import {getEmotionImage} from '../util/emotion.js';
     import ButtonComponent from './ButtonComponent.vue';
+    import {useDiaryListStore} from '../stores/diary-list-store.js';
 
     const props = defineProps({
         id: Number,
         emotionId: Number,
-        createdDate: Date,
+        createdDate: Number,
         content: String
     });
-    const emits = defineEmits(['onDelete']);
     const router = useRouter();
+    const diaryListStore = useDiaryListStore();
+
+    const onClickDelete = () => {
+        diaryListStore.removeDiary(props.id);
+    }
+
 </script>
 
 <template>
     <div class="DiaryItem">
         <div
             class="img_section"
-            :class="'img_section' + props.emotionId"
+            :class="'img_section_' + props.emotionId"
             @click="router.push(`/diary/${id}`)">
             <img :src="getEmotionImage(props.emotionId)" />
         </div>
@@ -37,7 +43,8 @@
                 @on-click="router.push(`/edit/${id}`)"/>
             <ButtonComponent
                 text="삭제하기"
-                @on-click="emits('onDelete')"/>
+                type="NEGATIVE"
+                @on-click="onClickDelete"/>
         </div>
     </div>
 

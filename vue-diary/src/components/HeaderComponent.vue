@@ -8,15 +8,27 @@
 
 <template>
     <header class="Header">
-        <div class="header_left">
-            <component :is="props.leftChild" />
-        </div>
+        <template v-if="props.leftChild">
+            <div class="header_left">
+                <component
+                    :is="props.leftChild.component"
+                    :text="props.leftChild.text"
+                    :type="props.leftChild.type"
+                    @on-click="props.leftChild.click"/>
+            </div>
+        </template>
         <div class="header_center">
             {{props.title}}
         </div>
-        <div class="header_right">
-            <component :is="props.rightChild" />
-        </div>
+        <template v-if="props.rightChild">
+            <div class="header_right">
+                <component
+                    :is="props.rightChild.component"
+                    :text="props.rightChild.text"
+                    :type="props.rightChild.type"
+                    @on-click="props.rightChild.click"/>
+            </div>
+        </template>
     </header>
 </template>
 

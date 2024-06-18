@@ -8,7 +8,8 @@
 
 <template>
     <button
-        :class="props.type"
+        class="Button"
+        :class="`Button_${props.type}`"
         @click="emits('onClick')">{{props.text}}</button>
 </template>
 

@@ -19,7 +19,6 @@ export const useDiaryListStore = defineStore('diaryList', () => {
 
 	};
 	const addDiary = (diary) => {
-		console.log('add');
 		diaryList.value.push({
 			id: idRef.value++,
 			...diary

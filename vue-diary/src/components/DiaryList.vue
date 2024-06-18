@@ -1,15 +1,32 @@
 <script setup>
+    import {computed, ref} from 'vue';
+    import DiaryItem from './DiaryItem.vue';
+    import ButtonComponent from './ButtonComponent.vue';
+    import {useRouter} from 'vue-router';
+    import {useDiaryListStore} from '../stores/diary-list-store.js';
+    import {storeToRefs} from 'pinia';
 
-import {computed, ref} from 'vue';
-import DiaryItem from './DiaryItem.vue';
-
+    const router = useRouter();
     const props = defineProps({
-        list: Array
+        date: Date
+    })
+
+    const diaryListStore = useDiaryListStore();
+    const {diaryList} = storeToRefs(diaryListStore)
+    const getMonthlyData = (date, list) => {
+        const beginTime = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0).getTime();
+        const endTime = new Date(date.getFullYear(), date.getMonth()+1, 0, 23, 59, 59).getTime();
+        return list.filter(item => beginTime <= item.createdDate && item.createdDate <= endTime);
+    }
+
+    const monthlyData = computed(() => {
+        return getMonthlyData(props.date, diaryList.value);
     });
 
     const sortType = ref('latest');
+
     const getSortedList = computed(() => {
-        return props.list.toSorted((a, b) => {
+        return getMonthlyData(props.date, diaryList.value).toSorted((a, b) => {
             if(sortType.value === 'latest') {
                 return Number(a.createdDate) - Number(b.createdDate);
             } else {
@@ -22,16 +39,24 @@ import DiaryItem from './DiaryItem.vue';
 <template>
     <div class="DiaryList">
         <div class="menu_bar">
-            <select :value="sortType">
+            <select v-model="sortType">
                 <option value="latest">최신순</option>
                 <option value="oldest">오래된 순</option>
             </select>
+            <ButtonComponent
+                text="새 일기 쓰기"
+                type="POSITIVE"
+                @on-click="router.push('/new')"
+            />
         </div>
         <div class="list_wrapper">
-            <template v-if="props.list.length > 0">
+            <template v-if="monthlyData.length > 0">
                 <DiaryItem v-for="diary in getSortedList"
                     :key="diary.id"
-                    {...diary} />
+                    :id="diary.id"
+                    :emotion-id="diary.emotionId"
+                    :created-date="diary.createdDate"
+                    :content="diary.content"/>
             </template>
         </div>
     </div>

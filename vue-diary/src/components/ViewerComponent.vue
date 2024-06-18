@@ -6,7 +6,7 @@
         content: String
     });
 
-    const emotionItem = emotionList.find(item => String(item.emotionId) === String(props.emotionId));
+    const emotionItem = emotionList.find(item => item.emotionId === props.emotionId);
 </script>
 
 <template>
@@ -17,7 +17,7 @@
                 class="emotion_img_wrapper"
                 :class="'emotion_img_wrapper_' + props.emotionId">
                 <img :src="getEmotionImage(props.emotionId)"/>
-                <div>{{emotionItem.emotionName}</div>
+                <div>{{emotionItem.emotionName}}</div>
             </div>
         </section>
 
