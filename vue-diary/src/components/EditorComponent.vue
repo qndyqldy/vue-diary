@@ -1,10 +1,10 @@
 <script setup>
-import {onMounted, ref} from 'vue';
-    import {getStringedDate} from '../util/date.js';
+    import {onMounted, ref} from 'vue';
+    import {getStringedDate} from '@/util/date.js';
     import {useRouter} from 'vue-router';
-    import ButtonComponent from './ButtonComponent.vue';
-    import EmotionItem from './EmotionItem.vue';
-    import {emotionList} from '../util/emotion.js';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
+    import EmotionItem from '@/components/EmotionItem.vue';
+    import {emotionList} from '@/util/emotion.js';
 
     const props = defineProps({
         initData: Object

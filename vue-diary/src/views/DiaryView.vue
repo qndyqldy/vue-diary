@@ -1,12 +1,12 @@
 <script setup>
-    import HeaderComponent from '../components/HeaderComponent.vue';
+    import HeaderComponent from '@/components/HeaderComponent.vue';
     import {onMounted, ref} from 'vue';
-    import {setPageTitle} from '../util/title.js';
-    import {useDiaryListStore} from '../stores/diary-list-store.js';
+    import {setPageTitle} from '@/util/title.js';
+    import {useDiaryListStore} from '@/stores/diary-list-store.js';
     import {useRouter} from 'vue-router';
-    import {getStringedDate} from '../util/date.js';
-    import ButtonComponent from '../components/ButtonComponent.vue';
-    import ViewerComponent from '../components/ViewerComponent.vue';
+    import {getStringedDate} from '@/util/date.js';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
+    import ViewerComponent from '@/components/ViewerComponent.vue';
 
     const props = defineProps({
         id: Number

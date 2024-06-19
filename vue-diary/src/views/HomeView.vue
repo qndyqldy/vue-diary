@@ -1,10 +1,10 @@
 <script setup>
-    import HeaderComponent from '../components/HeaderComponent.vue';
+    import HeaderComponent from '@/components/HeaderComponent.vue';
     import {onMounted, ref} from 'vue';
-    import {setPageTitle} from '../util/title.js';
-    import {useDiaryListStore} from '../stores/diary-list-store.js';
-    import ButtonComponent from '../components/ButtonComponent.vue';
-    import DiaryList from '../components/DiaryList.vue';
+    import {setPageTitle} from '@/util/title.js';
+    import {useDiaryListStore} from '@/stores/diary-list-store.js';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
+    import DiaryList from '@/components/DiaryList.vue';
 
     const diaryListStore = useDiaryListStore();
     const pivotDate = ref(new Date());

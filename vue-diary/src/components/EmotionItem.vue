@@ -1,5 +1,5 @@
 <script setup>
-    import {getEmotionImage} from '../util/emotion.js';
+    import {getEmotionImage} from '@/util/emotion.js';
 
     const props = defineProps({
         emotionId: Number,

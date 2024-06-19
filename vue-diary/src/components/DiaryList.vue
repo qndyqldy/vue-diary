@@ -1,9 +1,9 @@
 <script setup>
     import {computed, ref} from 'vue';
-    import DiaryItem from './DiaryItem.vue';
-    import ButtonComponent from './ButtonComponent.vue';
+    import DiaryItem from '@/components/DiaryItem.vue';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
     import {useRouter} from 'vue-router';
-    import {useDiaryListStore} from '../stores/diary-list-store.js';
+    import {useDiaryListStore} from '@/stores/diary-list-store.js';
     import {storeToRefs} from 'pinia';
 
     const router = useRouter();

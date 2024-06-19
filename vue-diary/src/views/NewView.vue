@@ -1,9 +1,9 @@
 <script setup>
-    import HeaderComponent from '../components/HeaderComponent.vue';
-    import EditorComponent from '../components/EditorComponent.vue';
-    import ButtonComponent from '../components/ButtonComponent.vue';
+    import HeaderComponent from '@/components/HeaderComponent.vue';
+    import EditorComponent from '@/components/EditorComponent.vue';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
     import {useRouter} from 'vue-router';
-    import {useDiaryListStore} from '../stores/diary-list-store.js';
+    import {useDiaryListStore} from '@/stores/diary-list-store.js';
 
     const router = useRouter();
     const diaryListStore = useDiaryListStore();

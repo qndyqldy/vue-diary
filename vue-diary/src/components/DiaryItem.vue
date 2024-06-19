@@ -1,8 +1,8 @@
 <script setup>
     import {useRouter} from 'vue-router';
-    import {getEmotionImage} from '../util/emotion.js';
-    import ButtonComponent from './ButtonComponent.vue';
-    import {useDiaryListStore} from '../stores/diary-list-store.js';
+    import {getEmotionImage} from '@/util/emotion.js';
+    import ButtonComponent from '@/components/ButtonComponent.vue';
+    import {useDiaryListStore} from '@/stores/diary-list-store.js';
 
     const props = defineProps({
         id: Number,
