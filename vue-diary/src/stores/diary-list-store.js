@@ -2,14 +2,13 @@ import {defineStore} from 'pinia';
 import {ref} from 'vue';
 
 export const useDiaryListStore = defineStore('diaryList', () => {
-
 	const diaryList = ref([]);
 	let idRef = ref(0);
 
 	const setDiaryList = (list) => {
 		diaryList.value = list;
 
-		localStorage.setItem('diary', JSON.stringify(diaryList.value));
+		saveLocalStorage();
 	}
 	const getDiaryList = () => {
 		return diaryList.value.map(diary => diary);
@@ -24,18 +23,22 @@ export const useDiaryListStore = defineStore('diaryList', () => {
 			...diary
 		});
 
-		localStorage.setItem('diary', JSON.stringify(diaryList.value));
+		saveLocalStorage();
 	};
 	const removeDiary = (id) => {
 		diaryList.value = diaryList.value.filter(diary => diary.id !== id);
-		localStorage.setItem('diary', JSON.stringify(diaryList.value));
+		saveLocalStorage();
 	};
 	const updateDiary = (diary) => {
 		diaryList.value = diaryList.value.map(item => item.id === diary.id ? diary : item);
-		localStorage.setItem('diary', JSON.stringify(diaryList.value));
+		saveLocalStorage();
 	};
 	const setIdRef = (id) => {
 		idRef.value = id;
+	}
+
+	const saveLocalStorage = () => {
+		localStorage.setItem('diary', JSON.stringify(diaryList.value));
 	}
 
 	return {
