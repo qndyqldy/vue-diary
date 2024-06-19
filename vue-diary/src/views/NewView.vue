@@ -12,7 +12,7 @@
             ...diary,
             createdDate: diary.createdDate.getTime()
         });
-        router.back();
+        router.replace('/');
     }
 
     // 자식 컴포넌트

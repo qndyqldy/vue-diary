@@ -18,7 +18,7 @@
         if(confirm('일기를 정말 삭제할까요?')) {
             diaryListStore.removeDiary(props.id);
 
-            router.back();
+            router.replace('/');
         }
     }
 
@@ -29,7 +29,7 @@
                 createdDate: diary.createdDate.getTime()
             });
 
-            router.back();
+            router.replace('/');
         }
     }
 
@@ -52,7 +52,7 @@
         diary.value = diaryListStore.getDiary(props.id);
         if(!diary.value) {
             alert('존재하지 않는 일기장입니다.');
-            router.back();
+            router.replace('/');
         }
     });
 </script>

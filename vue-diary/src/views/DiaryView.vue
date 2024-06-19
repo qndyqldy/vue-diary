@@ -34,7 +34,7 @@
         diary.value = diaryListStore.getDiary(props.id);
         if(!diary.value) {
             alert('존재하지 않는 일기장입니다.');
-            router.back();
+            router.replace('/');
         }
     });
 </script>
