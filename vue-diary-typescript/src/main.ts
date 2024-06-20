@@ -6,5 +6,5 @@ import router from "@/router/router.ts";
 
 createApp(App)
     .use(router)
-    .use(createPinia)
+    .use(createPinia())
     .mount('#app')
